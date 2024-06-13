@@ -71,6 +71,8 @@ public class Main {
 //    присвоение переменной для строки со знаками для последующих исключений
       int sign = Convert.SignToInt(value1);
 
+//        System.out.println(value0 + value2);
+
 //    исключения
         switch(sign){
             case 8:
@@ -86,15 +88,106 @@ public class Main {
                 System.out.println("throws Exception //т.к. строка не является математической операцией");
                 System.exit(0);
         }
+//      специальные переменные для точной отработки исключений
+        int check0 = Convert.StrToInt(part0);
+        int check2 = Convert.StrToInt(part2);
+        int arabNotArr55 = 0;
+        int arabNotArr89 = 0;
 
-         if(value0 == 0 && value2 != 0){
+        try {
+            arabNotArr55 = Integer.parseInt(part0);
+        } catch (NumberFormatException e) {
+        }
+
+        try {
+            arabNotArr89 = Integer.parseInt(part2);
+        } catch (NumberFormatException e) {
+        }
+
+        for (int i : arrArab) {
+            if (value0 == 34 && value2 == 34 && check0 == 21 && check2 != 21 && arabNotArr55 == 55 && arabNotArr89 == i) {
+                System.out.println("throws Exception //т.к. первое число выходит за рамки допустимых значений арабских цифр");
+                System.exit(0);
+            }
+        }
+        for (int i : arrArab) {
+            if (value0 == 34 && value2 == 34 && check0 != 21 && check2 == 21 && arabNotArr55 == i && arabNotArr89 == 89) {
+                System.out.println("throws Exception //т.к. второе число выходит за рамки допустимых значений арабских цифр");
+                System.exit(0);
+            }
+        }
+
+//      ещё специальные переменные для точной отработки исключений
+        int arabNotArr0 = 55;
+        int arabNotArr2 = 89;
+
+        try {
+            arabNotArr0 = Integer.parseInt(part0);
+            } catch (NumberFormatException e) {
+            }
+
+        try {
+            arabNotArr2 = Integer.parseInt(part2);
+        } catch (NumberFormatException e) {
+        }
+
+        if(check2 == 0 && sign == 5){
+            System.out.println("throws Exception //я работаю с арабскими числами от 1 до 10 включительно и на ноль делить нельзя");
+            System.exit(0);
+        }
+
+        if(check0 == 0 || check2 == 0){
+            System.out.println("throws Exception //я работаю с арабскими числами от 1 до 10 включительно");
+            System.exit(0);
+        }
+
+        if (value0 != 34 && value2 == 34 && check0 == 21 && check2 != 21 && arabNotArr0 == 55 && arabNotArr2 != 55) {
             System.out.println("throws Exception //т.к. используются одновременно разные системы счисления");
             System.exit(0);
         }
-        if(value0 != 0 && value2 == 0){
-            System.out.println("throws Exception //т.к. используются одновременно разные системы счисления");
+
+        if (value0 == 34 && value2 != 34 && check0 != 21 && check2 == 21 && arabNotArr0 != 89 && arabNotArr2 == 89) {
+                System.out.println("throws Exception //т.к. используются одновременно разные системы счисления");
+                System.exit(0);
+        }
+
+        for (int i : arrArab) {
+            if (value0 == 34 && value2 == 34 && check0 == 21 && check2 != 21 && arabNotArr0 == 55 && arabNotArr2 == i) {
+                System.out.println("throws Exception //т.к. используются одновременно разные системы счисления и/или первое число выходит за рамки допустимых значений римских цифр");
+                System.exit(0);
+            }
+        }
+        for (int i : arrArab) {
+            if (value0 == 34 && value2 == 34 && check0 != 21 && check2 == 21 && arabNotArr0 == i && arabNotArr2 == 89) {
+                System.out.println("throws Exception //т.к. используются одновременно разные системы счисления и/или второе число выходит за рамки допустимых значений римских цифр");
+                System.exit(0);
+            }
+        }
+
+        for (int i : arrArab) {
+            if (value0 == 34 && value2 == 34 && check0 == 21 && check2 == 21 && arabNotArr0 == 55 && arabNotArr2 != i) {
+                System.out.println("throws Exception //т.к. числа выходят за рамки допустимых значений");
+                System.exit(0);
+            }
+        }
+
+        for (int i : arrArab) {
+            if (value0 == 34 && value2 == 34 && check0 == 21 && check2 == 21 && arabNotArr0 != i && arabNotArr2 == 89) {
+                System.out.println("throws Exception //т.к. числа выходят за рамки допустимых значений");
+                System.exit(0);
+            }
+        }
+
+        if (value0 == 34 && value2 != 34 && check0 == 21 && check2 == 21 && arabNotArr0 == 55 && arabNotArr2 == 89) {
+            System.out.println("throws Exception //т.к. первое число выходит за рамки допустимых значений римских цифр");
             System.exit(0);
         }
+
+        if (value0 != 34 && value2 == 34 && check0 == 21 && check2 == 21 && arabNotArr0 == 55 && arabNotArr2 == 89) {
+            System.out.println("throws Exception //т.к. второе число выходит за рамки допустимых значений римских цифр");
+            System.exit(0);
+        }
+
         if (value0 < value2 && value0 != 0 && value2 !=0 && sign == 2){
             System.out.println("throws Exception //т.к. в римской системе нет отрицательных чисел");
             System.exit(0);}
@@ -127,15 +220,14 @@ public class Main {
             return result;
         }
 
-        // это я пытался обуздать циклы и условия
-//        for(int i = 0, j = 0; i<=arrArab.length && j<=arrMathSign.length; i++, j++){
-//            if(Objects.equals(arrArab[i], part0) && Objects.equals(arrArab[i], part2)){
-//            }
-//        }
-
 //      переводим строки с арабскими в int
         value0 = Convert.StrToInt(part0);
         value2 = Convert.StrToInt(part2);
+
+       if (value0 == 21 && value2 == 21) {
+                System.out.println("throws Exception //т.к. числа выходят за рамки допустимых арабских значений");
+                System.exit(0);
+       }
 
 //      вычисления для арабских
         if(sign == 1) {
