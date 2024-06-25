@@ -6,7 +6,7 @@ public static void main(String[] args) {
 
 }
     static int RomToArab(String Rome) {
-        int result = 0;
+        int result = 34;
         if (Rome.equals("I")) return 1;
         if (Rome.equals("II")) return 2;
         if (Rome.equals("III")) return 3;
@@ -21,7 +21,8 @@ public static void main(String[] args) {
     }
 
     static int StrToInt(String Arab) {
-        int result = 0;
+        int result = 21;
+        if (Arab.equals("0")) return 0;
         if (Arab.equals("1")) return 1;
         if (Arab.equals("2")) return 2;
         if (Arab.equals("3")) return 3;
