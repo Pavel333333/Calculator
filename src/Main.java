@@ -192,6 +192,10 @@ public class Main {
             System.out.println("throws Exception //т.к. в римской системе нет отрицательных чисел");
             System.exit(0);}
 
+        if (value0 == value2 && sign == 2){
+            System.out.println("throws Exception //т.к. в римской системе нет нуля");
+            System.exit(0);}
+
         // упражнялся с условиями, но...
 //        if (value0 == 0 && value2 == 0 && !Objects.equals(arrRom[0], part0) || !Objects.equals(arrRom[1], part0) || !Objects.equals(arrRom[2], part0) || !Objects.equals(arrRom[3], part0) || !Objects.equals(arrRom[4], part0) || !Objects.equals(arrRom[5], part0) || !Objects.equals(arrRom[6], part0) || !Objects.equals(arrRom[7], part0) || !Objects.equals(arrRom[8], part0) || !Objects.equals(arrRom[9], part0)
 //                || !Objects.equals(arrRom[0], part2) && !Objects.equals(arrRom[1], part2) || !Objects.equals(arrRom[2], part2) || !Objects.equals(arrRom[3], part2) || !Objects.equals(arrRom[4], part2) || !Objects.equals(arrRom[5], part2) || !Objects.equals(arrRom[6], part2) || !Objects.equals(arrRom[7], part2) || !Objects.equals(arrRom[8], part2) || !Objects.equals(arrRom[9], part2))){
