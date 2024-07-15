@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws CustomException {
 
         System.out.println("Input:");
         Scanner scan = new Scanner(System.in);
@@ -15,7 +15,7 @@ public class Main {
         System.out.println(result);
     }
 
-    public static String calc(String input) {
+    public static String calc(String input) throws CustomException {
 
         int[] arrArab = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
         String[] arrMathSign = new String[]{"+", "-", "*", "/"};
@@ -28,12 +28,7 @@ public class Main {
         String[] parts = input.split(" ");
 
         if (parts.length > 3) {
-            try {
-                throw new CustomException(parts.length > 3);
-            } catch (CustomException e) {
-                System.out.println("формат математической операции не удовлетворяет заданию - два операнда и один оператор (+, -, /, *)");
-                System.exit(0);
-            }
+            throw new CustomException("формат математической операции не удовлетворяет заданию - два операнда и один оператор (+, -, /, *)");
         }
 
         if (parts.length < 3) {
@@ -318,5 +313,3 @@ public class Main {
 
         }
     }
-
-
