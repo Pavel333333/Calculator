@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Scanner;
@@ -32,18 +33,25 @@ public class Main {
         }
 
         if (parts.length < 3) {
-            try {
-                throw new CustomException(parts.length < 3);
-            } catch (CustomException e) {
-                System.out.println("строка не является математической операцией");
-                System.exit(0);
+            throw new CustomException("строка не является математической операцией");
             }
-        }
 
 //      присваиваем строки трём подстрокам
         String part0 = parts[0];
         String part1 = parts[1];
         String part2 = parts[2];
+
+        if (!part0.matches("[IVXLCDM0-9]+") && !part2.matches("[IVXLCDM0-9]+")) {
+            throw new CustomException("введённые символы должны быть арабской или римской цифрой от 1 до 10");
+        }
+
+        if (!part0.matches("[IVXLCDM0-9]+")) {
+            throw new CustomException("первый введённый символ должен быть арабской или римской цифрой от 1 до 10");
+        }
+
+        if (!part2.matches("[IVXLCDM0-9]+")) {
+            throw new CustomException("третий введённый символ должен быть арабской или римской цифрой от 1 до 10");
+        }
 
 //      переменные для вычислений
         int value0 = 0;
@@ -62,34 +70,14 @@ public class Main {
 //        System.out.println(value0 + value2);
 
         if (sign == 8) {
-            try {
-                throw new CustomException(sign == 8);
-            } catch (CustomException e) {
-                System.out.println("строка не является математической операцией");
-                System.exit(0);
+            throw new CustomException("строка не является математической операцией");
+                } else if (sign == 13) {
+            throw new CustomException("строка не является математической операцией");
+                } else if (sign == 21) {
+            throw new CustomException("строка не является математической операцией");
+                } else if (sign == 34) {
+            throw new CustomException("строка не является математической операцией");
             }
-        } else if (sign == 13) {
-            try {
-                throw new CustomException(sign == 13);
-            } catch (CustomException e) {
-                System.out.println("строка не является математической операцией");
-                System.exit(0);
-            }
-        } else if (sign == 21) {
-            try {
-                throw new CustomException(sign == 21);
-            } catch (CustomException e) {
-                System.out.println("строка не является математической операцией");
-                System.exit(0);
-            }
-        } else if (sign == 34) {
-            try {
-                throw new CustomException(sign == 34);
-            } catch (CustomException e) {
-                System.out.println("строка не является математической операцией");
-                System.exit(0);
-            }
-        }
 
 //      специальные переменные для точной отработки исключений
 //      перевод строковых арабских в int
@@ -109,23 +97,25 @@ public class Main {
         } catch (NumberFormatException e) {
         }
 
-        if (value0 == 34 && value2 == 34 && check0 == 21 && check2 != 21 && arabNotArr55 == 55 && arabNotArr89 == check2) {
-            try {
-                throw new CustomException(value0 == 34 && value2 == 34 && check0 == 21 && check2 != 21 && arabNotArr55 == 55 && arabNotArr89 == check2);
-            } catch (CustomException e) {
-                System.out.println("первое число выходит за рамки допустимых значений арабских цифр");
-                System.exit(0);
-            }
+        //первое число арабское от 1 до 10, второе точно 0
+        if (value0 == 34 && value2 == 34 && check0 != 21 && check2 == 0 && arabNotArr55 == check0 && sign == 5) {
+            throw new CustomException("на ноль делить нельзя");
         }
 
-        if (value0 == 34 && value2 == 34 && check0 != 21 && check2 == 21 && arabNotArr55 == check0 && arabNotArr89 == 89) {
-            try {
-                throw new CustomException(value0 == 34 && value2 == 34 && check0 != 21 && check2 == 21 && arabNotArr55 == check0 && arabNotArr89 == 89);
-            } catch (CustomException e) {
-                System.out.println("второе число выходит за рамки допустимых значений арабских цифр");
-                System.exit(0);
-            }
+        //первое число арабское 11 +, второе точно 0
+        if (value0 == 34 && value2 == 34 && check0 == 21 && check2 == 0 && arabNotArr55 != 0 && sign == 5) {
+            throw new CustomException("первое число выходит за рамки допустимых значений арабских цифр и на ноль делить нельзя");
         }
+
+        //первое число арабское 11 +, второе точно арабское от 1 до 10
+        if (value0 == 34 && value2 == 34 && check0 == 21 && check2 != 21 && arabNotArr55 != 0 && arabNotArr89 == check2) {
+            throw new CustomException("первое число выходит за рамки допустимых значений арабских цифр");
+            }
+
+        //первое число точно арабское от 1 до 10, второе число арабское 11 +
+        if (value0 == 34 && value2 == 34 && check0 != 21 && check2 == 21 && arabNotArr55 == check0 && arabNotArr89 != 0) {
+            throw new CustomException("второе число выходит за рамки допустимых значений арабских цифр");
+            }
 
 //      ещё специальные переменные для точной отработки исключений
         int arabNotArr0 = 55;
@@ -141,112 +131,74 @@ public class Main {
         } catch (NumberFormatException e) {
         }
 
-        if (check2 == 0 && sign == 5) {
-            try {
-                throw new CustomException(check2 == 0 && sign == 5);
-            } catch (CustomException e) {
-                System.out.println("я работаю с арабскими числами от 1 до 10 включительно и на ноль делить нельзя");
-                System.exit(0);
-            }
-        }
-
-        if (check0 == 0 || check2 == 0) {
-            try {
-                throw new CustomException(check0 == 0 || check2 == 0);
-            } catch (CustomException e) {
-                System.out.println("я работаю с арабскими числами от 1 до 10 включительно");
-                System.exit(0);
-            }
-        }
-
+        //первое число точно римское от 1 до 10, второе число точно арабское от 1 до 10
         if (value0 != 34 && value2 == 34 && check0 == 21 && check2 != 21 && arabNotArr0 == 55 && arabNotArr2 != 55) {
-            try {
-                throw new CustomException(value0 != 34 && value2 == 34 && check0 == 21 && check2 != 21 && arabNotArr0 == 55 && arabNotArr2 != 55);
-            } catch (CustomException e) {
-                System.out.println("используются одновременно разные системы счисления");
-                System.exit(0);
+            throw new CustomException("используются одновременно разные системы счисления");
             }
-        }
 
+        //первое число точно арабское от 1 до 10, второе число точно римское от 1 до 10
         if (value0 == 34 && value2 != 34 && check0 != 21 && check2 == 21 && arabNotArr0 != 89 && arabNotArr2 == 89) {
-            try {
-                throw new CustomException(value0 == 34 && value2 != 34 && check0 != 21 && check2 == 21 && arabNotArr0 != 89 && arabNotArr2 == 89);
-            } catch (CustomException e) {
-                System.out.println("используются одновременно разные системы счисления");
-                System.exit(0);
+            throw new CustomException("используются одновременно разные системы счисления");
             }
-        }
 
+        //первое число точно римское 11 +, второе число точно арабское от 1 до 10
         if (value0 == 34 && value2 == 34 && check0 == 21 && check2 != 21 && arabNotArr0 == 55 && arabNotArr2 == check2) {
-            try {
-                throw new CustomException(value0 == 34 && value2 == 34 && check0 == 21 && check2 != 21 && arabNotArr0 == 55 && arabNotArr2 == check2);
-            } catch (CustomException e) {
-                System.out.println("используются одновременно разные системы счисления и/или первое число выходит за рамки допустимых значений римских цифр");
-                System.exit(0);
+            throw new CustomException("используются одновременно разные системы счисления и/или первое число выходит за рамки допустимых значений римских цифр");
             }
-        }
 
+        //первое число точно арабское от 1 до 10, второе число точно римское 11 +
         if (value0 == 34 && value2 == 34 && check0 != 21 && check2 == 21 && arabNotArr0 == check0 && arabNotArr2 == 89) {
-            try {
-                throw new CustomException(value0 == 34 && value2 == 34 && check0 != 21 && check2 == 21 && arabNotArr0 == check0 && arabNotArr2 == 89);
-            } catch (CustomException e) {
-                System.out.println("используются одновременно разные системы счисления и/или второе число выходит за рамки допустимых значений римских цифр");
-                System.exit(0);
+            throw new CustomException("используются одновременно разные системы счисления и/или второе число выходит за рамки допустимых значений римских цифр");
             }
+
+        //первое число точно римское 11 +, второе число точно арабское 11 +
+        if (value0 == 34 && value2 == 34 && check0 == 21 && check2 == 21 && arabNotArr0 == 55 && arabNotArr55 == 0 && arabNotArr89 != 0) {
+            throw new CustomException("числа выходят за рамки допустимых значений и используются одновременно разные системы счисления");
+            }
+
+        //первое число точно арабское 11 +, второе число точно римское 11 +
+        if (value0 == 34 && value2 == 34 && check0 == 21 && check2 == 21 && arabNotArr55 != 0 && arabNotArr2 == 89 && arabNotArr89 == 0) {
+            throw new CustomException("числа выходят за рамки допустимых значений и используются одновременно разные системы счисления");
+            }
+
+        //первое число точно арабское 11 +, второе число точно римское от 1 до 10
+        if (value0 == 34 && value2 != 34 && check0 == 21 && check2 == 21 && arabNotArr55 != 0 && arabNotArr2 == 89) {
+            throw new CustomException("первое число выходит за рамки допустимых значений арабских цифр и используются одновременно разные системы счисления");
+            }
+
+        //первое число точно римское от 1 до 10, второе число точно арабское 11 +
+        if (value0 != 34 && value2 == 34 && check0 == 21 && check2 == 21 && arabNotArr0 == 55 && arabNotArr89 != 0) {
+            throw new CustomException("второе число выходит за рамки допустимых значений арабских цифр и используются одновременно разные системы счисления");
+            }
+
+        //первое число точно римское 11 +, второе число точно римское 11 +
+        if (value0 == 34 && value2 == 34 && check0 == 21 && check2 == 21 && arabNotArr0 == 55 && arabNotArr2 == 89) {
+            throw new CustomException("оба числа выходят за рамки допустимых значений римских цифр");
         }
 
-        if (value0 == 34 && value2 == 34 && check0 == 21 && check2 == 21 && arabNotArr0 == 55 && !java.util.Arrays.asList(arrArab).contains(arabNotArr2)) {
-            try {
-                throw new CustomException(value0 == 34 && value2 == 34 && check0 == 21 && check2 == 21 && arabNotArr0 == 55 && !java.util.Arrays.asList(arrArab).contains(arabNotArr2));
-            } catch (CustomException e) {
-                System.out.println("числа выходят за рамки допустимых значений");
-                System.exit(0);
-            }
-        }
-
-        if (value0 == 34 && value2 == 34 && check0 == 21 && check2 == 21 && !java.util.Arrays.asList(arrArab).contains(arabNotArr0) && arabNotArr2 == 89) {
-            try {
-                throw new CustomException(value0 == 34 && value2 == 34 && check0 == 21 && check2 == 21 && arabNotArr0 == 55 && !java.util.Arrays.asList(arrArab).contains(arabNotArr2));
-            } catch (CustomException e) {
-                System.out.println("числа выходят за рамки допустимых значений");
-                System.exit(0);
-            }
-        }
-
+        //первое число точно римское 11 +, второе число точно римское от 1 до 10
         if (value0 == 34 && value2 != 34 && check0 == 21 && check2 == 21 && arabNotArr0 == 55 && arabNotArr2 == 89) {
-            try {
-                throw new CustomException(value0 == 34 && value2 != 34 && check0 == 21 && check2 == 21 && arabNotArr0 == 55 && arabNotArr2 == 89);
-            } catch (CustomException e) {
-                System.out.println("первое число выходит за рамки допустимых значений римских цифр");
-                System.exit(0);
-            }
+            throw new CustomException("первое число выходит за рамки допустимых значений римских цифр");
         }
 
+        //первое число точно римское от 1 до 10, второе число точно римское 11+
         if (value0 != 34 && value2 == 34 && check0 == 21 && check2 == 21 && arabNotArr0 == 55 && arabNotArr2 == 89) {
-            try {
-                throw new CustomException(value0 != 34 && value2 == 34 && check0 == 21 && check2 == 21 && arabNotArr0 == 55 && arabNotArr2 == 89);
-            } catch (CustomException e) {
-                System.out.println("второе число выходит за рамки допустимых значений римских цифр");
-                System.exit(0);
-            }
+            throw new CustomException("второе число выходит за рамки допустимых значений римских цифр");
         }
 
+        //первое число точно римское от 1 до 10, второе число точно римское от 1 до 10. первое меньше второго.
         if (value0 < value2 && value0 != 0 && value2 != 0 && sign == 2) {
-            try {
-                throw new CustomException(value0 < value2 && value0 != 0 && value2 != 0 && sign == 2);
-            } catch (CustomException e) {
-                System.out.println("в римской системе нет отрицательных чисел");
-                System.exit(0);
+            throw new CustomException("в римской системе нет отрицательных чисел");
             }
-        }
 
+        //первое число точно римское от 1 до 10, второе число точно римское от 1 до 10. оба равны.
         if (arabNotArr0 == 55 && arabNotArr2 == 89 && sign == 2) {
-            try {
-                throw new CustomException(value0 == value2 && sign == 2);
-            } catch (CustomException e) {
-                System.out.println("в римской системе нет нуля");
-                System.exit(0);
+            throw new CustomException("в римской системе нет нуля");
             }
+
+        //исключаем ноль на первом или втором месте
+        if (check0 == 0 || check2 == 0) {
+            throw new CustomException("я работаю с арабскими числами от 1 до 10 включительно");
         }
 
 //      вычисления для римских
@@ -276,22 +228,12 @@ public class Main {
             value2 = Convert.StrToInt(part2);
 
         if (check0 == 21 && check2 == 21) {
-            try {
-                throw new CustomException(check0 == 21 && check2 == 21);
-            } catch (CustomException e) {
-                System.out.println("числа выходят за рамки допустимых арабских значений");
-                System.exit(0);
+            throw new CustomException("числа выходят за рамки допустимых арабских значений");
             }
-        }
 
         if (check0 == 21 || check2 == 21) {
-            try {
-                throw new CustomException(check0 == 21 || check2 == 21);
-            } catch (CustomException e) {
-                System.out.println("одно из чисел выходит за рамки допустимых арабских значений. я работаю с числами от 1 до 10");
-                System.exit(0);
+            throw new CustomException("одно из чисел выходит за рамки допустимых арабских значений. я работаю с числами от 1 до 10");
             }
-        }
 
 //      вычисления для арабских
             if (sign == 1) {
